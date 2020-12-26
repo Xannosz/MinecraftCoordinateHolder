@@ -1,3 +1,4 @@
 FROM lwieske/java-8:latest
-COPY ./target/minecraft.coordinate.holder-0.0.1-jar-with-dependencies.jar /holder/holder.jar
+#RUN dnf update && dnf install -y locales && locale-gen hu_HU.UTF-8
+COPY ./target/minecraft.coordinate.holder-0.0.2-jar-with-dependencies.jar /holder/holder.jar
 CMD cd /holder && java -jar holder.jar

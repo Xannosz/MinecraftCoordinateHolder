@@ -41,7 +41,7 @@ public class Data {
 
     public static void readData() {
         try {
-            JsonElement dataObject = JsonParser.parseString(FileUtils.readFileToString(DATA_PATH.toFile()));
+            JsonElement dataObject = JsonParser.parseString(FileUtils.readFileToString(DATA_PATH.toFile(),"UTF-8"));
             INSTANCE = new Gson().fromJson(dataObject, Data.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class Data {
         try {
             DATA_PATH.toFile().getParentFile().mkdirs();
             DATA_PATH.toFile().createNewFile();
-            FileUtils.writeStringToFile(DATA_PATH.toFile(), new Gson().toJson(INSTANCE));
+            FileUtils.writeStringToFile(DATA_PATH.toFile(), new Gson().toJson(INSTANCE),"UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
