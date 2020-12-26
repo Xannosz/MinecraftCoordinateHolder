@@ -16,7 +16,7 @@ import java.util.Set;
 
 public class Data {
 
-    private final static Path DATA_PATH = Paths.get("data.json");
+    private final static Path DATA_PATH = Paths.get("data/data.json");
 
     public static Data INSTANCE = new Data();
 
@@ -25,11 +25,11 @@ public class Data {
 
     @Getter
     @Setter
-    private String mapPrefix="/map";
+    private String mapPrefix = "/map";
 
     @Getter
     @Setter
-    private String mainPage="google.com";
+    private String mainPage = "http://google.com";
 
     public void addCoordinate(String name, int x, int y, int z, Dimension dimension) {
         coordinates.add(new Coordinate(name, x, y, z, dimension));
@@ -51,6 +51,7 @@ public class Data {
 
     public static void writeData() {
         try {
+            DATA_PATH.toFile().getParentFile().mkdirs();
             DATA_PATH.toFile().createNewFile();
             FileUtils.writeStringToFile(DATA_PATH.toFile(), new Gson().toJson(INSTANCE));
         } catch (Exception e) {
@@ -71,9 +72,9 @@ public class Data {
     public static class CoordinateComparator implements Comparator<Coordinate> {
         @Override
         public int compare(Coordinate coord1, Coordinate coord2) {
-            if (coord2.getDimension().getI() > coord1.getDimension().getI()) {
+            if (coord2.getDimension().getI() < coord1.getDimension().getI()) {
                 return 1;
-            } else if (coord2.getDimension().getI() < coord1.getDimension().getI()) {
+            } else if (coord2.getDimension().getI() > coord1.getDimension().getI()) {
                 return -1;
             } else {
                 if (coord1.getX() > coord2.getX()) {
@@ -88,7 +89,7 @@ public class Data {
     }
 
     public enum Dimension {
-        OVER_WORD(0,"minecraft%20-%20overworld/day"), NETHER(1,"minecraft%20-%20nether/nether"), END(2,"minecraft%20-%20end/end");
+        OVER_WORD(0, "minecraft%20-%20overworld/day"), NETHER(1, "minecraft%20-%20nether/nether"), END(2, "minecraft%20-%20end/end");
 
         @Getter
         private final int i;
@@ -96,7 +97,7 @@ public class Data {
         @Getter
         private final String link;
 
-        Dimension(int i,String link) {
+        Dimension(int i, String link) {
             this.i = i;
             this.link = link;
         }

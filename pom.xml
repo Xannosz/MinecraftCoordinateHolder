@@ -5,7 +5,7 @@
 	<artifactId>minecraft.coordinate.holder</artifactId>
 	<version>0.0.1</version>
 	<name>Minecraft coordinate holder</name>
-	<description></description>
+	<description>Minecraft coordinate holder</description>
 	<organization>
 		<name>xannosz</name>
 	</organization>
@@ -28,7 +28,7 @@
 					<archive>
 						<manifest>
 							<mainClass>
-								hu.xannosz.minecraft.coordinate.holder.app.Main
+								hu.xannosz.minecraft.coordinate.holder.Holder
 							</mainClass>
 						</manifest>
 					</archive>

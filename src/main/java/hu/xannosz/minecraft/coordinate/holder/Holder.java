@@ -20,8 +20,11 @@ public class Holder implements HttpHandler {
     private static final String Y = "y";
     private static final String Z = "z";
     private static final String DIMENSION = "dimension";
+    private static final String VERSION = "0.0.1";
+
     private final Theme theme = new Theme();
     private final HtmlClass copyButton = new HtmlClass();
+    private final HtmlClass formButton = new HtmlClass();
 
     public static void main(String[] args) {
         Holder holder = new Holder();
@@ -38,31 +41,44 @@ public class Holder implements HttpHandler {
         CssComponent body = new CssComponent(HtmlSelector.BODY.getSelector());
         body.addAttribute(CssAttribute.COLOR, "lightgray");
         body.addAttribute(CssAttribute.BACKGROUND_COLOR, "black");
+        body.addAttribute(CssAttribute.TEXT_ALIGN, "center");
         theme.add(body);
 
         CssComponent input = new CssComponent(HtmlSelector.INPUT.getSelector());
         input.addAttribute(CssAttribute.COLOR, "lightgray");
         input.addAttribute(CssAttribute.BACKGROUND_COLOR, "black");
+        input.addAttribute(CssAttribute.MARGIN, "5px");
+        input.addAttribute(CssAttribute.PADDING, "5px");
         theme.add(input);
 
         CssComponent select = new CssComponent(HtmlSelector.SELECT.getSelector());
         select.addAttribute(CssAttribute.COLOR, "lightgray");
         select.addAttribute(CssAttribute.BACKGROUND_COLOR, "black");
+        select.addAttribute(CssAttribute.MARGIN, "5px");
+        select.addAttribute(CssAttribute.PADDING, "5px");
         theme.add(select);
-
-        CssComponent div = new CssComponent(HtmlSelector.DIV.getSelector());
-        div.addAttribute(CssAttribute.BORDER_COLOR, "lightgray");
-        div.addAttribute(CssAttribute.BORDER_WIDTH, "1px");
-        div.addAttribute(CssAttribute.BORDER_STYLE, "solid");
-        div.addAttribute(CssAttribute.BORDER_RADIUS, "15px");
-        div.addAttribute(CssAttribute.MARGIN, "30px");
-        div.addAttribute(CssAttribute.WIDTH, "60%");
-        theme.add(div);
 
         CssComponent img = new CssComponent(HtmlSelector.IMG.getSelector());
         img.addAttribute(CssAttribute.WIDTH, "32px");
         img.addAttribute(CssAttribute.HEIGHT, "32px");
         theme.add(img);
+
+        CssComponent table = new CssComponent(HtmlSelector.TABLE.getSelector());
+        table.addAttribute(CssAttribute.BORDER_COLOR, "lightgray");
+        table.addAttribute(CssAttribute.BORDER_WIDTH, "1px");
+        table.addAttribute(CssAttribute.BORDER_STYLE, "solid");
+        table.addAttribute(CssAttribute.BORDER_RADIUS, "15px");
+        table.addAttribute(CssAttribute.MARGIN, "30px");
+        table.addAttribute(CssAttribute.WIDTH, "60%");
+        theme.add(table);
+
+        CssComponent th = new CssComponent(HtmlSelector.TH.getSelector());
+        th.addAttribute(CssAttribute.TEXT_DECORATION, "underline");
+        theme.add(th);
+
+        CssComponent tr = new CssComponent(new Selector("tr:nth-child(even), tr:nth-child(even) button"));
+        tr.addAttribute(CssAttribute.BACKGROUND_COLOR, "#101010");
+        theme.add(tr);
 
         CssComponent a = new CssComponent(HtmlSelector.A.getSelector());
         a.addAttribute(CssAttribute.DISPLAY, "block");
@@ -83,24 +99,33 @@ public class Holder implements HttpHandler {
         button.addAttribute(CssAttribute.BACKGROUND_COLOR, "black");
         theme.add(button);
 
-        CssComponent copyButtonCss = new CssComponent(new Selector("."+copyButton+" "+HtmlSelector.BUTTON));
+        CssComponent copyButtonCss = new CssComponent(new Selector("." + copyButton + " " + HtmlSelector.BUTTON));
         copyButtonCss.addAttribute(CssAttribute.BORDER, "0");
         theme.add(copyButtonCss);
 
-        CssComponent aHover = new CssComponent(new Selector(HtmlSelector.A+":hover"));
+        CssComponent formButtonCss = new CssComponent(new Selector("." + formButton + ", " + "." + formButton + " " + HtmlSelector.BUTTON));
+        formButtonCss.addAttribute(CssAttribute.MARGIN, "10px");
+        formButtonCss.addAttribute(CssAttribute.PADDING, "10px");
+        theme.add(formButtonCss);
+
+        CssComponent aHover = new CssComponent(new Selector(HtmlSelector.A + ":hover"));
         aHover.addAttribute(CssAttribute.COLOR, "white");
         aHover.addAttribute(CssAttribute.BORDER_COLOR, "white");
         theme.add(aHover);
 
-        CssComponent buttonHover = new CssComponent(new Selector(HtmlSelector.BUTTON+":hover"));
+        CssComponent buttonHover = new CssComponent(new Selector(HtmlSelector.BUTTON + ":hover"));
         buttonHover.addAttribute(CssAttribute.COLOR, "white");
         buttonHover.addAttribute(CssAttribute.BORDER_COLOR, "white");
         theme.add(buttonHover);
 
-        CssComponent inputHover = new CssComponent(new Selector(HtmlSelector.INPUT+":hover"));
+        CssComponent inputHover = new CssComponent(new Selector(HtmlSelector.INPUT + ":hover"));
         inputHover.addAttribute(CssAttribute.COLOR, "white");
         inputHover.addAttribute(CssAttribute.BORDER_COLOR, "white");
         theme.add(inputHover);
+
+        CssComponent footer = new CssComponent(HtmlSelector.FOOTER.getSelector());
+        footer.addAttribute(CssAttribute.FLOAT, "down");
+        theme.add(footer);
     }
 
     @Override
@@ -113,25 +138,25 @@ public class Holder implements HttpHandler {
             addPage.addTheme(theme);
             Form form = new Form("/", false);
 
-            form.add(new Label(NAME, "Name of the coordinate: "));
+            form.add(new Label(NAME, "Name of the coordinate : "));
             Input name = new Input("text");
             name.setName(NAME);
             form.add(name);
             form.add(new StringHtmlComponent(StringModifiers.BR.toString()));
 
-            form.add(new Label(X, "X coordinate (integer) : "));
+            form.add(new Label(X, "X coordinate ( integer ) : "));
             Input x = new Input("text");
             x.setName(X);
             form.add(x);
             form.add(new StringHtmlComponent(StringModifiers.BR.toString()));
 
-            form.add(new Label(Y, "Y coordinate (integer) : "));
+            form.add(new Label(Y, "Y coordinate ( integer ) : "));
             Input y = new Input("text");
             y.setName(Y);
             form.add(y);
             form.add(new StringHtmlComponent(StringModifiers.BR.toString()));
 
-            form.add(new Label(Z, "Z coordinate (integer) : "));
+            form.add(new Label(Z, "Z coordinate ( integer ) : "));
             Input z = new Input("text");
             z.setName(Z);
             form.add(z);
@@ -146,11 +171,12 @@ public class Holder implements HttpHandler {
             form.add(new StringHtmlComponent(StringModifiers.BR.toString()));
 
             Button okButton = new Button("OK");
+            okButton.addClass(formButton);
             okButton.setSubmit();
             form.add(okButton);
 
             addPage.addComponent(form);
-            addPage.addComponent(new OneButtonForm("/", "Cancel", false));
+            addPage.addComponent(new OneButtonForm("/", "Cancel", false).addClass(formButton));
             return new Douplet<>(200, addPage);
         }
 
@@ -192,8 +218,10 @@ public class Holder implements HttpHandler {
 
         page.addComponent(table);
 
-        page.addComponent(new FixedButton("/add", "Add new", new ButtonPosition("20px", "20px"), false));
+        page.addComponent(new FixedButton("/add", "Add new", new ButtonPosition("20px", "5%"), false));
+        page.addComponent(new FixedButton(Data.INSTANCE.getMainPage(), "Main page", new ButtonPosition("20px", "15%"), false));
 
+        page.addComponent(new Footer().add(new P("Version: " + VERSION)));
         return new Douplet<>(200, page);
     }
 
