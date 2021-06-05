@@ -20,7 +20,7 @@ public class Holder implements HttpHandler {
     private static final String Y = "y";
     private static final String Z = "z";
     private static final String DIMENSION = "dimension";
-    private static final String VERSION = "0.0.2";
+    private static final String VERSION = "0.1.2";
 
     private final Theme theme = new Theme();
     private final HtmlClass copyButton = new HtmlClass();

@@ -41,7 +41,7 @@ public class Data {
 
     public static void readData() {
         try {
-            JsonElement dataObject = JsonParser.parseString(FileUtils.readFileToString(DATA_PATH.toFile(),"UTF-8"));
+            JsonElement dataObject = JsonParser.parseString(FileUtils.readFileToString(DATA_PATH.toFile(), "UTF-8"));
             INSTANCE = new Gson().fromJson(dataObject, Data.class);
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class Data {
         try {
             DATA_PATH.toFile().getParentFile().mkdirs();
             DATA_PATH.toFile().createNewFile();
-            FileUtils.writeStringToFile(DATA_PATH.toFile(), new Gson().toJson(INSTANCE),"UTF-8");
+            FileUtils.writeStringToFile(DATA_PATH.toFile(), new Gson().toJson(INSTANCE), "UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -89,7 +89,12 @@ public class Data {
     }
 
     public enum Dimension {
-        OVER_WORD(0, "minecraft%20-%20overworld/day"), NETHER(1, "minecraft%20-%20nether/nether"), END(2, "minecraft%20-%20end/end");
+        OVER_WORD(0, "Daedalus%20-%20overworld/Daedalus%20day"),
+        NETHER(1, "Daedalus%20Nether%20-%20nether/Daedalus%20nether%20light"),
+        END(2, "Daedalus%20End%20-%20end/Daedalus%20End"),
+        CERBERUS_OVER_WORD(3, "Cerberus%20-%20overworld/Cerberus%20day"),
+        CERBERUS_NETHER(4, "Cerberus%20Nether%20-%20nether/Cerberus%20nether%20light"),
+        CERBERUS_END(5, "Cerberus%20End%20-%20end/Cerberus%20End");
 
         @Getter
         private final int i;

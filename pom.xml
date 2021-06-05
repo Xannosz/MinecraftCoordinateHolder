@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.xannosz</groupId>
 	<artifactId>minecraft.coordinate.holder</artifactId>
-	<version>0.0.2</version>
+	<version>0.1.2</version>
 	<name>Minecraft coordinate holder</name>
 	<description>Minecraft coordinate holder</description>
 	<organization>
