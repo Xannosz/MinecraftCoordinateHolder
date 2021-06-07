@@ -89,12 +89,13 @@ public class Data {
     }
 
     public enum Dimension {
-        OVER_WORD(0, "Daedalus%20-%20overworld/Daedalus%20day"),
-        NETHER(1, "Daedalus%20Nether%20-%20nether/Daedalus%20nether%20light"),
-        END(2, "Daedalus%20End%20-%20end/Daedalus%20End"),
-        CERBERUS_OVER_WORD(3, "Cerberus%20-%20overworld/Cerberus%20day"),
-        CERBERUS_NETHER(4, "Cerberus%20Nether%20-%20nether/Cerberus%20nether%20light"),
-        CERBERUS_END(5, "Cerberus%20End%20-%20end/Cerberus%20End");
+        OVER_WORD(0, "Daedalus%20-%20overworld/Daedalus_day"),
+        NETHER(1, "Daedalus%20Nether%20-%20nether/Daedalus_nether_light"),
+        END(2, "Daedalus%20End%20-%20end/Daedalus_end"),
+        FARAWAY_LANDS(3, "Daedalus%20Faraway%20Lands%20-%20overworld/Daedalus_faraway_lands_day"),
+        CERBERUS_OVER_WORD(4, "Cerberus%20-%20overworld/Cerberus_day"),
+        CERBERUS_NETHER(5, "Cerberus%20Nether%20-%20nether/Cerberus_nether_light"),
+        CERBERUS_END(6, "Cerberus%20End%20-%20end/Cerberus_end");
 
         @Getter
         private final int i;
